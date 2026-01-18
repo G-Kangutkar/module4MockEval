@@ -8,7 +8,7 @@ route.post('/',(req,res)=>{
     const data = readData();
     const newOrder = {
         id: data.orders.length>0? data.orders[data.orders.length-1].id+1:1,
-        productId:data.orders.length>0? data.orders[data.orders.length-1].id+1:1,
+        productId:req.body.productId,
         quanlity: req.body.quanlity,
         totoalAmount: data.products.price * data.orders.quanlity,
         status : req.body.status,
@@ -41,5 +41,5 @@ route.delete("/:orderId",(req,res)=>{
 route.put("/change-status/:orderId",(req,res)=>{
     const data=readData();
     const orderId = parseInt(req.params.orderId);
-    
+
 })

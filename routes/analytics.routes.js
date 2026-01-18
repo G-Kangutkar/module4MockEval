@@ -24,3 +24,14 @@ route.get('/cancelled-orders',(req,res)=>{
     data.orders =order;
     res.status(200).json(data.orders)
 });
+
+route.get('/total-revenue/:productId',(req,res)=>{
+    const data=readData();
+    const productId = parseInt(req.params.productId);
+    const product =[]
+    const order = data.orders.filter(el=>el.id === productId && el.status !== "cancelled" );
+    data.orders =order;
+    totalRevenue = data.orders.reduce((acc,item)=> {return acc + item.quantity},0 )
+    
+});
+
