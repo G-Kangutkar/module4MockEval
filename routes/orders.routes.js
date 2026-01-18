@@ -15,9 +15,10 @@ route.post('/',(req,res)=>{
         createdAt: req.body.date
     }
     data.orders.push(newOrder);
+    writeData(data)
     // const totoalAmount = data.products.price * data.orders.quanlity;
   
-    let stock =  Number(data.products.stock)
+    let stock =  data.products.stock-1
     console.log(stock)
     if(stock === 0){
         return res.status(400).send("Insufficient stock")
