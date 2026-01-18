@@ -34,4 +34,4 @@ route.get('/total-revenue/:productId',(req,res)=>{
     totalRevenue = data.orders.reduce((acc,item)=> {return acc + item.quantity},0 )
     
 });
-
+export default route;

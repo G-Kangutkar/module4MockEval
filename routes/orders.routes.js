@@ -12,13 +12,17 @@ route.post('/',(req,res)=>{
         quanlity: req.body.quanlity,
         totoalAmount: data.products.price * data.orders.quanlity,
         status : req.body.status,
-        createdAt: Date.now()
+        createdAt: req.body.date
     }
+    data.orders.push(newOrder);
     // const totoalAmount = data.products.price * data.orders.quanlity;
-    if(req.body.status){
-        data.products.stock> 0 ? -1 : res.status(400).send("Insufficient stock")
+  
+    let stock =  Number(data.products.stock)
+    console.log(stock)
+    if(stock === 0){
+        return res.status(400).send("Insufficient stock")
     }
-    res.status(201).send("order placed", totoalAmount)
+    res.status(201).send("order placed")
 });
 
 route.get('/',(req,res)=>{
@@ -42,4 +46,6 @@ route.put("/change-status/:orderId",(req,res)=>{
     const data=readData();
     const orderId = parseInt(req.params.orderId);
 
-})
+});
+
+export default route;
